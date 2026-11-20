@@ -407,6 +407,13 @@ int main() {
     numLock.led = 1;
     numLock.key_code[0] = 89;
     Require(sceConvertKeycodeGetCharacterFromKeyboardData(&numLock, 0, 0, 4, &kbdChar) == 0 && kbdChar == u'1');
+    KeyboardData rightShift = keyData;
+    rightShift.length = 2;
+    rightShift.key_code[1] = 5;
+    rightShift.modifier_key = 0x20;
+    Require(sceConvertKeycodeGetCharacterFromKeyboardData(&rightShift, 1, 0, 4, &kbdChar) == 0 && kbdChar == u'B');
+    rightShift.led = 2;
+    Require(sceConvertKeycodeGetCharacterFromKeyboardData(&rightShift, 1, 0, 4, &kbdChar) == 0 && kbdChar == u'b');
     KeyboardData full = keyData;
     full.length = 16;
     full.key_code[15] = 5;
